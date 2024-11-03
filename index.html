@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Site Elaborado</title>
+    <title>Meu Site Responsivo</title>
     <style>
         * {
             box-sizing: border-box;
@@ -41,7 +41,8 @@
             background: white;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin: 20px;
+            margin: 20px auto;
+            max-width: 800px; /* Limita a largura máxima */
         }
         footer {
             text-align: center;
@@ -61,11 +62,24 @@
             border-radius: 5px;
             margin-bottom: 10px;
         }
+
+        /* Media Queries para Responsividade */
+        @media (max-width: 600px) {
+            nav button {
+                display: block; /* Botões empilhados em telas menores */
+                width: 100%; /* Largura total do botão */
+                margin: 5px 0; /* Margem entre os botões */
+            }
+            main {
+                margin: 10px; /* Menor margem em telas pequenas */
+                padding: 15px; /* Menor padding em telas pequenas */
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Meu Site Elaborado</h1>
+        <h1>Meu Site Responsivo</h1>
         <nav>
             <button onclick="showHome()">Home</button>
             <button onclick="showAbout()">Sobre</button>
@@ -78,7 +92,7 @@
         <p>Selecione uma opção na barra de navegação para ver o conteúdo.</p>
     </main>
     <footer>
-        <p>&copy; 2024 Meu Site Elaborado</p>
+        <p>&copy; 2024 Meu Site Responsivo</p>
     </footer>
     <script>
         function showHome() {
