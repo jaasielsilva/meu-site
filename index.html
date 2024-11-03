@@ -28,13 +28,14 @@
         }
         nav button {
             margin: 0 10px;
-            padding: 10px 15px;
+            padding: 8px 12px; /* Ajuste de padding para botões */
             background-color: #28a745;
             color: white;
             border: none;
             cursor: pointer;
             border-radius: 5px;
             transition: background-color 0.3s;
+            font-size: 16px; /* Tamanho da fonte padrão */
         }
         nav button:hover {
             background-color: #218838;
@@ -68,9 +69,11 @@
         /* Media Queries para Responsividade */
         @media (max-width: 600px) {
             nav button {
-                display: block; /* Botões empilhados em telas menores */
-                width: 100%; /* Largura total do botão */
-                margin: 5px 0; /* Margem entre os botões */
+                display: inline-block; /* Mantém os botões na mesma linha */
+                width: auto; /* Largura automática para os botões */
+                padding: 6px 10px; /* Ajuste de padding para telas pequenas */
+                font-size: 14px; /* Tamanho da fonte reduzido */
+                margin: 5px; /* Margem menor entre os botões */
             }
             main {
                 margin: 10px; /* Menor margem em telas pequenas */
