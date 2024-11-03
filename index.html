@@ -28,14 +28,14 @@
         }
         nav button {
             margin: 0 10px;
-            padding: 8px 12px; /* Ajuste de padding para botões */
+            padding: 8px 12px;
             background-color: #28a745;
             color: white;
             border: none;
             cursor: pointer;
             border-radius: 5px;
             transition: background-color 0.3s;
-            font-size: 16px; /* Tamanho da fonte padrão */
+            font-size: 16px;
         }
         nav button:hover {
             background-color: #218838;
@@ -46,7 +46,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin: 20px auto;
-            max-width: 800px; /* Limita a largura máxima */
+            max-width: 800px;
             flex: 1; /* Faz o main ocupar o espaço disponível */
         }
         footer {
@@ -55,8 +55,8 @@
             background: #007BFF;
             color: white;
             width: 100%;
-            position: fixed; /* Fixa o rodapé na parte inferior */
-            bottom: 0; /* Alinha o rodapé ao fundo da página */
+            position: fixed;
+            bottom: 0;
         }
         h2 {
             color: #333;
@@ -67,19 +67,23 @@
             border-radius: 5px;
             margin-bottom: 10px;
         }
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e2e3e5;
+            border-left: 5px solid #ffc107;
+        }
 
         /* Media Queries para Responsividade */
         @media (max-width: 600px) {
             nav button {
-                display: inline-block; /* Mantém os botões na mesma linha */
-                width: auto; /* Largura automática para os botões */
-                padding: 6px 10px; /* Ajuste de padding para telas pequenas */
-                font-size: 14px; /* Tamanho da fonte reduzido */
-                margin: 5px; /* Margem menor entre os botões */
+                padding: 6px 10px;
+                font-size: 14px;
+                margin: 5px;
             }
             main {
-                margin: 10px; /* Menor margem em telas pequenas */
-                padding: 15px; /* Menor padding em telas pequenas */
+                margin: 10px;
+                padding: 15px;
             }
         }
     </style>
@@ -92,6 +96,7 @@
             <button onclick="showAbout()">Sobre</button>
             <button onclick="showServices()">Serviços</button>
             <button onclick="showContact()">Contato</button>
+            <button onclick="showFeedback()">Feedback</button>
         </nav>
     </header>
     <main id="content">
@@ -143,6 +148,17 @@
                 <h2>Contato</h2>
                 <p>Entre em contato conosco através do e-mail: contato@meusite.com</p>
                 <p>Ou ligue para nós: (00) 12345-6789</p>
+            `;
+        }
+
+        function showFeedback() {
+            const content = document.getElementById('content');
+            content.innerHTML = `
+                <h2>Feedback</h2>
+                <div class="feedback">
+                    <p>Adoramos ouvir você! Por favor, compartilhe suas opiniões e sugestões conosco.</p>
+                    <p><strong>Envie seu feedback para:</strong> feedback@meusite.com</p>
+                </div>
             `;
         }
     </script>
