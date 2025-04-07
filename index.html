@@ -1,166 +1,99 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Site Responsivo com Rodapé Fixo</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh; /* Faz o corpo ocupar pelo menos a altura total da tela */
-        }
-        header {
-            background: #007BFF;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        nav {
-            margin: 10px 0;
-        }
-        nav button {
-            margin: 0 10px;
-            padding: 8px 12px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            font-size: 16px;
-        }
-        nav button:hover {
-            background-color: #218838;
-        }
-        main {
-            padding: 20px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin: 20px auto;
-            max-width: 800px;
-            flex: 1; /* Faz o main ocupar o espaço disponível */
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background: #007BFF;
-            color: white;
-            width: 100%;
-            position: fixed;
-            bottom: 0;
-        }
-        h2 {
-            color: #333;
-        }
-        .service {
-            background: #e9ecef;
-            padding: 15px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        .feedback {
-            margin-top: 20px;
-            padding: 15px;
-            background: #e2e3e5;
-            border-left: 5px solid #ffc107;
-        }
-
-        /* Media Queries para Responsividade */
-        @media (max-width: 600px) {
-            nav button {
-                padding: 6px 10px;
-                font-size: 14px;
-                margin: 5px;
-            }
-            main {
-                margin: 10px;
-                padding: 15px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meu Portfólio</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <h1>Meu Site Responsivo com Rodapé Fixo</h1>
-        <nav>
-            <button onclick="showHome()">Home</button>
-            <button onclick="showAbout()">Sobre</button>
-            <button onclick="showServices()">Serviços</button>
-            <button onclick="showContact()">Contato</button>
-            <button onclick="showFeedback()">Feedback</button>
-        </nav>
-    </header>
-    <main id="content">
-        <h2>Bem-vindo!</h2>
-        <p>Selecione uma opção na barra de navegação para ver o conteúdo.</p>
-    </main>
-    <footer>
-        <p>&copy; 2024 Meu Site Responsivo com Rodapé Fixo</p>
-    </footer>
-    <script>
-        function showHome() {
-            const content = document.getElementById('content');
-            content.innerHTML = `
-                <h2>Bem-vindo à Home!</h2>
-                <p>Este é o nosso site, onde você pode encontrar informações sobre nossos serviços e como entrar em contato.</p>
-            `;
-        }
+<body class="bg-gray-100 text-gray-900">
 
-        function showAbout() {
-            const content = document.getElementById('content');
-            content.innerHTML = `
-                <h2>Sobre Nós</h2>
-                <p>Somos uma empresa dedicada a oferecer os melhores serviços na área de tecnologia. Nossa missão é fornecer soluções inovadoras que atendam às necessidades de nossos clientes.</p>
-            `;
-        }
+  <!-- Navbar -->
+  <header class="bg-white shadow fixed w-full top-0 z-50">
+    <div class="container mx-auto flex justify-between items-center p-4">
+      <h1 class="text-xl font-bold">SeuNome</h1>
+      <nav class="space-x-4">
+        <a href="#home" class="hover:text-blue-600">Home</a>
+        <a href="#sobre" class="hover:text-blue-600">Sobre</a>
+        <a href="#projetos" class="hover:text-blue-600">Projetos</a>
+        <a href="#habilidades" class="hover:text-blue-600">Habilidades</a>
+        <a href="#contato" class="hover:text-blue-600">Contato</a>
+      </nav>
+    </div>
+  </header>
 
-        function showServices() {
-            const content = document.getElementById('content');
-            content.innerHTML = `
-                <h2>Nossos Serviços</h2>
-                <div class="service">
-                    <h3>Desenvolvimento Web</h3>
-                    <p>Criação de sites responsivos e aplicações web personalizadas.</p>
-                </div>
-                <div class="service">
-                    <h3>Consultoria em TI</h3>
-                    <p>Ajudamos sua empresa a otimizar processos e implementar novas tecnologias.</p>
-                </div>
-                <div class="service">
-                    <h3>Suporte Técnico</h3>
-                    <p>Oferecemos suporte técnico 24/7 para garantir que seus sistemas funcionem perfeitamente.</p>
-                </div>
-            `;
-        }
+  <main class="pt-20">
+    <!-- Home -->
+    <section id="home" class="min-h-screen flex items-center justify-center bg-blue-50">
+      <div class="text-center">
+        <h2 class="text-4xl font-bold mb-4">Olá! Eu sou SeuNome</h2>
+        <p class="text-lg mb-6">Desenvolvedor Full Stack | Apaixonado por tecnologia</p>
+        <a href="#projetos" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Veja meus projetos</a>
+      </div>
+    </section>
 
-        function showContact() {
-            const content = document.getElementById('content');
-            content.innerHTML = `
-                <h2>Contato</h2>
-                <p>Entre em contato conosco através do e-mail: contato@meusite.com</p>
-                <p>Ou ligue para nós: (00) 12345-6789</p>
-            `;
-        }
+    <!-- Sobre -->
+    <section id="sobre" class="container mx-auto py-16 px-4">
+      <h2 class="text-3xl font-bold mb-6">Sobre Mim</h2>
+      <p class="text-lg">Sou um desenvolvedor com experiência em Java, Spring Boot, MySQL, HTML, CSS, JavaScript e mais. Gosto de criar soluções úteis e bem feitas, e estou sempre aprendendo.</p>
+    </section>
 
-        function showFeedback() {
-            const content = document.getElementById('content');
-            content.innerHTML = `
-                <h2>Feedback</h2>
-                <div class="feedback">
-                    <p>Adoramos ouvir você! Por favor, compartilhe suas opiniões e sugestões conosco.</p>
-                    <p><strong>Envie seu feedback para:</strong> feedback@meusite.com</p>
-                </div>
-            `;
-        }
-    </script>
+    <!-- Projetos -->
+    <section id="projetos" class="bg-gray-100 py-16 px-4">
+      <div class="container mx-auto">
+        <h2 class="text-3xl font-bold mb-10">Projetos</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white p-4 rounded shadow">
+            <h3 class="text-xl font-semibold">Projeto 1</h3>
+            <p class="mb-4">Descrição do projeto, tecnologias usadas etc.</p>
+            <a href="#" class="text-blue-600 hover:underline">Ver no GitHub</a>
+          </div>
+          <div class="bg-white p-4 rounded shadow">
+            <h3 class="text-xl font-semibold">Projeto 2</h3>
+            <p class="mb-4">Descrição do projeto, tecnologias usadas etc.</p>
+            <a href="#" class="text-blue-600 hover:underline">Ver no GitHub</a>
+          </div>
+          <div class="bg-white p-4 rounded shadow">
+            <h3 class="text-xl font-semibold">Projeto 3</h3>
+            <p class="mb-4">Descrição do projeto, tecnologias usadas etc.</p>
+            <a href="#" class="text-blue-600 hover:underline">Ver no GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Habilidades -->
+    <section id="habilidades" class="container mx-auto py-16 px-4">
+      <h2 class="text-3xl font-bold mb-6">Habilidades</h2>
+      <ul class="grid grid-cols-2 md:grid-cols-4 gap-4 text-lg list-disc pl-5">
+        <li>Java</li>
+        <li>Spring Boot</li>
+        <li>MySQL</li>
+        <li>HTML/CSS</li>
+        <li>JavaScript</li>
+        <li>Docker</li>
+        <li>AWS</li>
+        <li>Git</li>
+      </ul>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="bg-blue-50 py-16 px-4">
+      <div class="container mx-auto text-center">
+        <h2 class="text-3xl font-bold mb-6">Contato</h2>
+        <p class="mb-4">Quer conversar? Me mande uma mensagem!</p>
+        <a href="mailto:seuemail@email.com" class="text-blue-600 text-lg underline">seuemail@email.com</a>
+        <div class="mt-6">
+          <a href="/assets/curriculo.pdf" download class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Baixar Currículo</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white py-4 text-center shadow mt-8">
+    <p>&copy; 2025 SeuNome. Todos os direitos reservados.</p>
+  </footer>
+
 </body>
 </html>
