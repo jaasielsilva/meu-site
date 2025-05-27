@@ -6,11 +6,11 @@
   <title>Jaasiel Miranda - Desenvolvedor Full Stack</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="bg-gray-50 text-gray-900 antialiased leading-relaxed">
 
-  <!-- Hero / Cabeçalho -->
+  <!-- Cabeçalho -->
   <header class="bg-white shadow-md fixed top-0 w-full z-50">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="w-full max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
       <h1 class="text-xl font-bold">Jaasiel Miranda</h1>
       <nav class="space-x-4 hidden md:block">
         <a href="#sobre" class="hover:text-blue-600">Sobre</a>
@@ -24,34 +24,38 @@
   <main class="pt-20">
     <!-- Seção Inicial -->
     <section class="min-h-screen bg-blue-100 flex items-center justify-center text-center px-4">
-      <div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-4">Desenvolvedor Full Stack</h2>
-        <p class="text-lg md:text-xl mb-6">Especializado em Java, Spring Boot, APIs REST, MySQL e Docker.</p>
+      <div class="w-full max-w-2xl">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Desenvolvedor Full Stack</h2>
+        <p class="text-base sm:text-lg md:text-xl mb-6">Especializado em Java, Spring Boot, APIs REST, MySQL e Docker.</p>
         <a href="#contato" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Solicite um Orçamento</a>
       </div>
     </section>
 
     <!-- Sobre -->
-    <section id="sobre" class="max-w-5xl mx-auto py-16 px-4">
-      <h2 class="text-3xl font-bold mb-6">Sobre Mim</h2>
-      <p class="text-lg leading-relaxed">Sou estudante de Ciência da Computação (UNICSUL - 2026) e desenvolvedor apaixonado por criar soluções digitais úteis. Tenho experiência prática com aplicações completas, backend com Java e Spring Boot, integração com bancos de dados MySQL, Docker e deploy em ambientes na nuvem (como AWS).</p>
+    <section id="sobre" class="w-full max-w-5xl mx-auto py-16 px-4">
+      <h2 class="text-2xl sm:text-3xl font-bold mb-6">Sobre Mim</h2>
+      <p class="text-base sm:text-lg leading-relaxed">
+        Sou estudante de Ciência da Computação (UNICSUL - 2026) e desenvolvedor apaixonado por criar soluções digitais úteis.
+        Tenho experiência prática com aplicações completas, backend com Java e Spring Boot, integração com bancos de dados MySQL,
+        Docker e deploy em ambientes na nuvem (como AWS).
+      </p>
     </section>
 
     <!-- Serviços -->
     <section id="servicos" class="bg-white py-16 px-4">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold mb-10 text-center">Serviços</h2>
-        <div class="grid md:grid-cols-3 gap-8 text-center">
+      <div class="w-full max-w-6xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-10 text-center">Serviços</h2>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8 text-center">
           <div class="bg-gray-100 p-6 rounded shadow">
-            <h3 class="text-xl font-semibold mb-2">Sistemas Web sob Medida</h3>
+            <h3 class="text-lg sm:text-xl font-semibold mb-2">Sistemas Web sob Medida</h3>
             <p>Desenvolvimento completo com Spring Boot, banco de dados e autenticação.</p>
           </div>
           <div class="bg-gray-100 p-6 rounded shadow">
-            <h3 class="text-xl font-semibold mb-2">Integrações com APIs</h3>
+            <h3 class="text-lg sm:text-xl font-semibold mb-2">Integrações com APIs</h3>
             <p>Criação e consumo de APIs RESTful, integração com serviços externos.</p>
           </div>
           <div class="bg-gray-100 p-6 rounded shadow">
-            <h3 class="text-xl font-semibold mb-2">Consultoria e Deploy</h3>
+            <h3 class="text-lg sm:text-xl font-semibold mb-2">Consultoria e Deploy</h3>
             <p>Auxílio em infraestrutura, Docker, e deploy em servidores ou nuvem.</p>
           </div>
         </div>
@@ -60,21 +64,21 @@
 
     <!-- Projetos -->
     <section id="projetos" class="bg-gray-100 py-16 px-4">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold mb-10 text-center">Projetos Recentes</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="w-full max-w-6xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-10 text-center">Projetos Recentes</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div class="bg-white p-4 rounded shadow">
-            <h3 class="text-xl font-semibold">LavaFácil</h3>
+            <h3 class="text-lg sm:text-xl font-semibold">LavaFácil</h3>
             <p class="text-sm mb-4">Sistema completo para gestão de lava-rápido. Spring Boot, Thymeleaf, MySQL, Docker.</p>
             <a href="https://github.com/jaasielsilva/Lavafacil" target="_blank" class="text-blue-600 hover:underline">Ver no GitHub</a>
           </div>
           <div class="bg-white p-4 rounded shadow">
-            <h3 class="text-xl font-semibold">Sistema de Conta Bancaria</h3>
+            <h3 class="text-lg sm:text-xl font-semibold">Sistema de Conta Bancaria</h3>
             <p class="text-sm mb-4">Login seguro com Spring Security, autorização via roles e integração com MySQL.</p>
             <a href="https://github.com/jaasielsilva/SimulacaoBancaria.git" target="_blank" class="text-blue-600 hover:underline">Ver no GitHub</a>
           </div>
           <div class="bg-white p-4 rounded shadow">
-            <h3 class="text-xl font-semibold">Sistema Empresarial</h3>
+            <h3 class="text-lg sm:text-xl font-semibold">Sistema Empresarial</h3>
             <p class="text-sm mb-4">Login seguro com Spring Security, autorização via roles e integração com MySQL.</p>
             <a href="https://github.com/jaasielsilva/SimulacaoBancaria.git" target="_blank" class="text-blue-600 hover:underline">Ver no GitHub</a>
           </div>
@@ -84,18 +88,20 @@
 
     <!-- Contato -->
     <section id="contato" class="bg-blue-50 py-16 px-4 text-center">
-      <h2 class="text-3xl font-bold mb-4">Entre em Contato</h2>
-      <p class="mb-4">Precisa de um sistema ou quer tirar dúvidas? Me mande uma mensagem!</p>
-      <a href="mailto:jaasiel1@outlook.com" class="text-blue-600 text-lg underline">jaasiel1@outlook.com</a>
-      <div class="mt-6">
-        <a href="Curriculo_Jaasiel.pdf" download class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Baixar Currículo</a>
+      <div class="w-full max-w-2xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-4">Entre em Contato</h2>
+        <p class="mb-4 text-base sm:text-lg">Precisa de um sistema ou quer tirar dúvidas? Me mande uma mensagem!</p>
+        <a href="mailto:jaasiel1@outlook.com" class="text-blue-600 text-lg underline">jaasiel1@outlook.com</a>
+        <div class="mt-6">
+          <a href="Curriculo_Jaasiel.pdf" download class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Baixar Currículo</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Rodapé -->
   <footer class="bg-white py-4 text-center shadow mt-8">
-    <p>&copy; 2025 Jaasiel Miranda. Todos os direitos reservados.</p>
+    <p class="text-sm sm:text-base">&copy; 2025 Jaasiel Miranda. Todos os direitos reservados.</p>
   </footer>
 
 </body>
