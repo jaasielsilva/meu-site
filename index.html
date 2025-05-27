@@ -3,109 +3,94 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfólio - Jaasiel Miranda da Silva</title>
+  <title>Jaasiel Miranda - Desenvolvedor Full Stack</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body class="bg-gray-50 text-gray-900">
 
-  <!-- Navbar -->
-  <header class="bg-white shadow fixed w-full top-0 z-50">
-    <div class="container mx-auto flex flex-wrap justify-between items-center px-4 sm:px-6 lg:px-8 py-4">
-      <h1 class="text-lg sm:text-xl font-bold">Jaasiel Miranda da Silva</h1>
-      <nav class="flex flex-wrap gap-2 text-sm sm:text-base">
-        <a href="#home" class="hover:text-blue-600">Home</a>
+  <!-- Hero / Cabeçalho -->
+  <header class="bg-white shadow-md fixed top-0 w-full z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">Jaasiel Miranda</h1>
+      <nav class="space-x-4 hidden md:block">
         <a href="#sobre" class="hover:text-blue-600">Sobre</a>
+        <a href="#servicos" class="hover:text-blue-600">Serviços</a>
         <a href="#projetos" class="hover:text-blue-600">Projetos</a>
-        <a href="#habilidades" class="hover:text-blue-600">Habilidades</a>
-        <a href="#certificados" class="hover:text-blue-600">Certificados</a>
         <a href="#contato" class="hover:text-blue-600">Contato</a>
       </nav>
     </div>
   </header>
 
-  <main class="pt-24">
-
-    <!-- Home -->
-    <section id="home" class="min-h-[80vh] flex items-center justify-center bg-blue-50 px-4 text-center">
+  <main class="pt-20">
+    <!-- Seção Inicial -->
+    <section class="min-h-screen bg-blue-100 flex items-center justify-center text-center px-4">
       <div>
-        <h2 class="text-2xl sm:text-4xl font-bold mb-4">Olá! Eu sou Jaasiel Miranda da Silva</h2>
-        <p class="text-base sm:text-lg mb-6">Desenvolvedor Full Stack | Foco em Java, Spring Boot e aplicações web</p>
-        <a href="#projetos" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition inline-block">Veja meus projetos</a>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Desenvolvedor Full Stack</h2>
+        <p class="text-lg md:text-xl mb-6">Especializado em Java, Spring Boot, APIs REST, MySQL e Docker.</p>
+        <a href="#contato" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Solicite um Orçamento</a>
       </div>
     </section>
 
     <!-- Sobre -->
-    <section id="sobre" class="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl sm:text-3xl font-bold mb-6">Sobre Mim</h2>
-      <p class="text-base sm:text-lg leading-relaxed">Sou um estudante de Ciência da Computação (UNICSUL - 2026)...</p>
+    <section id="sobre" class="max-w-5xl mx-auto py-16 px-4">
+      <h2 class="text-3xl font-bold mb-6">Sobre Mim</h2>
+      <p class="text-lg leading-relaxed">Sou estudante de Ciência da Computação (UNICSUL - 2026) e desenvolvedor apaixonado por criar soluções digitais úteis. Tenho experiência prática com aplicações completas, backend com Java e Spring Boot, integração com bancos de dados MySQL, Docker e deploy em ambientes na nuvem (como AWS).</p>
     </section>
 
-    <!-- Projetos -->
-    <section id="projetos" class="bg-gray-100 py-16 px-4 sm:px-6 lg:px-8">
-      <div class="container mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-bold mb-10">Projetos</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Projeto 1 -->
-          <div class="bg-white p-4 rounded shadow">
-            <h3 class="text-xl font-semibold">LavaFácil</h3>
-            <p class="mb-4 text-sm">Sistema web completo para lava-rápido...</p>
-            <a href="#" class="text-blue-600 hover:underline">Ver no GitHub</a>
+    <!-- Serviços -->
+    <section id="servicos" class="bg-white py-16 px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold mb-10 text-center">Serviços</h2>
+        <div class="grid md:grid-cols-3 gap-8 text-center">
+          <div class="bg-gray-100 p-6 rounded shadow">
+            <h3 class="text-xl font-semibold mb-2">Sistemas Web sob Medida</h3>
+            <p>Desenvolvimento completo com Spring Boot, banco de dados e autenticação.</p>
           </div>
-          <!-- Projeto 2 -->
-          <div class="bg-white p-4 rounded shadow">
-            <h3 class="text-xl font-semibold">Sistema de Autenticação</h3>
-            <p class="mb-4 text-sm">Projeto com formulário de login...</p>
-            <a href="#" class="text-blue-600 hover:underline">Ver no GitHub</a>
+          <div class="bg-gray-100 p-6 rounded shadow">
+            <h3 class="text-xl font-semibold mb-2">Integrações com APIs</h3>
+            <p>Criação e consumo de APIs RESTful, integração com serviços externos.</p>
+          </div>
+          <div class="bg-gray-100 p-6 rounded shadow">
+            <h3 class="text-xl font-semibold mb-2">Consultoria e Deploy</h3>
+            <p>Auxílio em infraestrutura, Docker, e deploy em servidores ou nuvem.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Habilidades -->
-    <section id="habilidades" class="container mx-auto py-16 px-4 sm:px-6 lg:px-8">
-      <h2 class="text-2xl sm:text-3xl font-bold mb-6">Habilidades</h2>
-      <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-base list-disc pl-5">
-        <li>Java / Spring Boot</li>
-        <li>HTML / CSS / Bootstrap</li>
-        <li>JavaScript / TypeScript</li>
-        <li>Angular / React (básico)</li>
-        <li>MySQL / SQL</li>
-        <li>Docker</li>
-        <li>AWS (noções)</li>
-        <li>Git / GitHub</li>
-        <li>APIs REST</li>
-      </ul>
-    </section>
-
-    <!-- Certificados -->
-    <section id="certificados" class="bg-gray-100 py-16 px-4 sm:px-6 lg:px-8">
-      <div class="container mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-bold mb-6">Certificados & Cursos</h2>
-        <ul class="list-disc pl-5 text-base sm:text-lg">
-          <li>Java e Spring Boot - DIO.me</li>
-          <li>Desenvolvimento Web - HTML, CSS e JS</li>
-          <li>Docker para Desenvolvedores</li>
-          <li>Fundamentos de AWS</li>
-        </ul>
+    <!-- Projetos -->
+    <section id="projetos" class="bg-gray-100 py-16 px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold mb-10 text-center">Projetos Recentes</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white p-4 rounded shadow">
+            <h3 class="text-xl font-semibold">LavaFácil</h3>
+            <p class="text-sm mb-4">Sistema completo para gestão de lava-rápido. Spring Boot, Thymeleaf, MySQL, Docker.</p>
+            <a href="#" class="text-blue-600 hover:underline">Ver no GitHub</a>
+          </div>
+          <div class="bg-white p-4 rounded shadow">
+            <h3 class="text-xl font-semibold">Sistema de Autenticação</h3>
+            <p class="text-sm mb-4">Login seguro com Spring Security, autorização via roles e integração com MySQL.</p>
+            <a href="#" class="text-blue-600 hover:underline">Ver no GitHub</a>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- Contato -->
-    <section id="contato" class="bg-blue-50 py-16 px-4 sm:px-6 lg:px-8">
-      <div class="container mx-auto text-center">
-        <h2 class="text-2xl sm:text-3xl font-bold mb-6">Contato</h2>
-        <p class="mb-4">Quer conversar? Me mande uma mensagem!</p>
-        <a href="mailto:jasiel1@outlook.com" class="text-blue-600 text-base sm:text-lg underline block">jasiel1@outlook.com</a>
-        <div class="mt-6">
-          <a href="/assets/curriculo.pdf" download class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition inline-block">Baixar Currículo</a>
-        </div>
+    <section id="contato" class="bg-blue-50 py-16 px-4 text-center">
+      <h2 class="text-3xl font-bold mb-4">Entre em Contato</h2>
+      <p class="mb-4">Precisa de um sistema ou quer tirar dúvidas? Me mande uma mensagem!</p>
+      <a href="mailto:jaasiel1@outlook.com" class="text-blue-600 text-lg underline">jaasiel1@outlook.com</a>
+      <div class="mt-6">
+        <a href="/assets/curriculo.pdf" download class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Baixar Currículo</a>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-white py-4 text-center shadow mt-8 px-4">
-    <p class="text-sm sm:text-base">&copy; 2025 Jaasiel Miranda da Silva. Todos os direitos reservados.</p>
+  <footer class="bg-white py-4 text-center shadow mt-8">
+    <p>&copy; 2025 Jaasiel Miranda. Todos os direitos reservados.</p>
   </footer>
 
 </body>
