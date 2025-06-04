@@ -2,126 +2,101 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jaasiel Silva - Desenvolvedor Full Stack</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Case Banco Gringotts - Análise de Crédito</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="bg-gray-50 text-gray-900 antialiased leading-relaxed">
+<body class="bg-light text-dark">
+  <div class="container py-5">
+    <h1 class="mb-4 text-center">📊 Case Banco Gringotts</h1>
+    <p class="lead">
+      Este projeto analisa o histórico de financiamentos mágicos do Banco Gringotts, com o objetivo de identificar
+      estratégias de concessão de crédito mais seguras após uma grave crise no mundo bruxo.
+    </p>
 
-  <!-- Cabeçalho -->
-  <header class="bg-white shadow-md fixed top-0 w-full z-50">
-    <div class="w-full max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold">Jaasiel Miranda</h1>
-      
-      <!-- Botão hamburguer para mobile -->
-      <button id="menu-btn" class="md:hidden focus:outline-none">
-        <svg class="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+    <hr>
 
-      <!-- Navegação -->
-      <nav id="menu" class="hidden md:flex md:space-x-4 flex-col md:flex-row absolute md:static top-full left-0 w-full md:w-auto bg-white md:bg-transparent px-4 md:px-0 py-2 md:py-0 shadow-md md:shadow-none z-50">
-        <a href="#sobre" class="py-2 md:py-0 hover:text-blue-600">Sobre</a>
-        <a href="#servicos" class="py-2 md:py-0 hover:text-blue-600">Serviços</a>
-        <a href="#projetos" class="py-2 md:py-0 hover:text-blue-600">Projetos</a>
-        <a href="#contato" class="py-2 md:py-0 hover:text-blue-600">Contato</a>
-      </nav>
+    <h2 class="mt-5">📌 Contexto</h2>
+    <ul>
+      <li>Desemprego no mundo bruxo: 12%</li>
+      <li>60% das famílias mágicas com dificuldade de pagar dívidas</li>
+      <li>Inadimplência em financiamentos de itens mágicos no maior patamar</li>
+      <li>Objetivo: definir perfis de risco e ajustar as ofertas de crédito</li>
+    </ul>
+
+    <h2 class="mt-5">📈 Análises</h2>
+
+    <div class="mb-5">
+      <h3>% Inadimplência por Tipo de Produto</h3>
+      <canvas id="produtoChart" height="100"></canvas>
     </div>
-  </header>
 
-  <main class="pt-20">
-    <!-- Seção Inicial -->
-    <section class="min-h-screen bg-blue-100 flex items-center justify-center text-center px-4">
-      <div class="w-full max-w-2xl">
-        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Desenvolvedor Full Stack</h2>
-        <p class="text-base sm:text-lg md:text-xl mb-6">Especializado em Java, Spring Boot, APIs REST, MySQL e Docker.</p>
-        <a href="#contato" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Solicite um Orçamento</a>
-      </div>
-    </section>
+    <div class="mb-5">
+      <h3>% Inadimplência por Local da Venda</h3>
+      <canvas id="localChart" height="100"></canvas>
+    </div>
 
-    <!-- Sobre -->
-    <section id="sobre" class="w-full max-w-5xl mx-auto py-16 px-4">
-      <h2 class="text-2xl sm:text-3xl font-bold mb-6">Sobre Mim</h2>
-      <p class="text-base sm:text-lg leading-relaxed">
-        Sou estudante de Ciência da Computação (UNICSUL - 2026) e desenvolvedor apaixonado por criar soluções digitais úteis.
-        Tenho experiência prática com aplicações completas, backend com Java e Spring Boot, integração com bancos de dados MySQL,
-        Docker e deploy em ambientes na nuvem (como AWS).
-      </p>
-    </section>
+    <div class="mb-5">
+      <h3>% Inadimplência por Histórico de Crédito</h3>
+      <canvas id="creditoChart" height="100"></canvas>
+    </div>
 
-    <!-- Serviços -->
-    <section id="servicos" class="bg-white py-16 px-4">
-      <div class="w-full max-w-6xl mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-bold mb-10 text-center">Serviços</h2>
-        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8 text-center">
-          <div class="bg-gray-100 p-6 rounded shadow">
-            <h3 class="text-lg sm:text-xl font-semibold mb-2">Sistemas Web sob Medida</h3>
-            <p>Desenvolvimento completo com Spring Boot, banco de dados e autenticação.</p>
-          </div>
-          <div class="bg-gray-100 p-6 rounded shadow">
-            <h3 class="text-lg sm:text-xl font-semibold mb-2">Integrações com APIs</h3>
-            <p>Criação e consumo de APIs RESTful, integração com serviços externos.</p>
-          </div>
-          <div class="bg-gray-100 p-6 rounded shadow">
-            <h3 class="text-lg sm:text-xl font-semibold mb-2">Consultoria e Deploy</h3>
-            <p>Auxílio em infraestrutura, Docker, e deploy em servidores ou nuvem.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div class="mb-5">
+      <h3>% Inadimplência por Poder Aquisitivo</h3>
+      <canvas id="poderChart" height="100"></canvas>
+    </div>
 
-    <!-- Projetos -->
-    <section id="projetos" class="bg-gray-100 py-16 px-4">
-      <div class="w-full max-w-6xl mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-bold mb-10 text-center">Projetos Recentes</h2>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="bg-white p-4 rounded shadow">
-            <h3 class="text-lg sm:text-xl font-semibold">LavaFácil</h3>
-            <p class="text-sm mb-4">Sistema completo para gestão de lava-rápido. Spring Boot, Thymeleaf, MySQL, Docker.</p>
-            <a href="https://github.com/jaasielsilva/Lavafacil" target="_blank" class="text-blue-600 hover:underline">Ver no GitHub</a>
-          </div>
-          <div class="bg-white p-4 rounded shadow">
-            <h3 class="text-lg sm:text-xl font-semibold">Sistema de Conta Bancaria</h3>
-            <p class="text-sm mb-4">Login seguro com Spring Security, autorização via roles e integração com MySQL.</p>
-            <a href="https://github.com/jaasielsilva/SimulacaoBancaria.git" target="_blank" class="text-blue-600 hover:underline">Ver no GitHub</a>
-          </div>
-          <div class="bg-white p-4 rounded shadow">
-            <h3 class="text-lg sm:text-xl font-semibold">Sistema Empresarial</h3>
-            <p class="text-sm mb-4">Login seguro com Spring Security, autorização via roles e integração com MySQL.</p>
-            <a href="https://github.com/jaasielsilva/SimulacaoBancaria.git" target="_blank" class="text-blue-600 hover:underline">Ver no GitHub</a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <h2 class="mt-5">✅ Recomendações</h2>
+    <ul>
+      <li>Restringir crédito para perfis com histórico de alto risco ou sem histórico</li>
+      <li>Aumentar exigência para produtos com alta inadimplência (ex: vassouras de corrida)</li>
+      <li>Diferenciar a oferta por local de venda (regiões mais críticas devem ter avaliação especial)</li>
+      <li>Monitorar de perto bruxos com baixo poder aquisitivo</li>
+    </ul>
 
-    <!-- Contato -->
-    <section id="contato" class="bg-blue-50 py-16 px-4 text-center">
-      <div class="w-full max-w-2xl mx-auto">
-        <h2 class="text-2xl sm:text-3xl font-bold mb-4">Entre em Contato</h2>
-        <p class="mb-4 text-base sm:text-lg">Precisa de um sistema ou quer tirar dúvidas? Me mande uma mensagem!</p>
-        <a href="mailto:jasiel1@outlook.com" class="text-blue-600 text-lg underline">jasiel1@outlook.com</a>
-        <div class="mt-6">
-          <a href="Curriculo_Jaasiel.pdf" download class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Baixar Currículo</a>
-        </div>
-      </div>
-    </section>
-  </main>
+    <h2 class="mt-5">📌 Conclusão</h2>
+    <p>
+      A análise de inadimplência permite ao Gringotts ajustar sua política de crédito para garantir
+      segurança financeira mesmo em tempos de crise mágica. Uma abordagem baseada em dados é essencial
+      para a sustentabilidade do banco e para o crescimento saudável do mundo bruxo.
+    </p>
 
-  <!-- Rodapé -->
-  <footer class="bg-white py-4 text-center shadow mt-8">
-    <p class="text-sm sm:text-base">&copy; 2025 Jaasiel Miranda. Todos os direitos reservados.</p>
-  </footer>
+    <footer class="mt-5 text-center">
+      <hr>
+      <p>Feito por [Seu Nome] · <a href="https://github.com/seuusuario/seurepositorio" target="_blank">Ver no GitHub</a></p>
+    </footer>
+  </div>
 
-  <!-- Script do menu -->
   <script>
-    const btn = document.getElementById('menu-btn');
-    const menu = document.getElementById('menu');
+    // Exemplo de estrutura para preencher futuramente com dados reais
+    const dummyData = {
+      labels: ["Produto A", "Produto B", "Produto C"],
+      datasets: [{
+        label: "% Inadimplência",
+        data: [12, 8, 20],
+        backgroundColor: ["#dc3545", "#ffc107", "#0d6efd"]
+      }]
+    };
 
-    btn.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
-    });
+    const config = {
+      type: 'bar',
+      data: dummyData,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { callback: value => value + "%" } }
+        }
+      }
+    };
+
+    new Chart(document.getElementById("produtoChart"), config);
+    new Chart(document.getElementById("localChart"), config);
+    new Chart(document.getElementById("creditoChart"), config);
+    new Chart(document.getElementById("poderChart"), config);
   </script>
-
 </body>
 </html>
