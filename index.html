@@ -3,100 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Case Banco Gringotts - Análise de Crédito</title>
+  <title>Apresentação - Estágio PF Crédito Consignado</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <style>
+    body { background: #f8f9fa; color: #212529; }
+    .section { padding: 4rem 0; }
+    .icon { font-size: 2rem; margin: 0.5rem; }
+    .gradient-text {
+      background: linear-gradient(90deg, #ff6600, #ffcc00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  </style>
 </head>
-<body class="bg-light text-dark">
-  <div class="container py-5">
-    <h1 class="mb-4 text-center">📊 Case Banco Gringotts</h1>
-    <p class="lead">
-      Este projeto analisa o histórico de financiamentos mágicos do Banco Gringotts, com o objetivo de identificar
-      estratégias de concessão de crédito mais seguras após uma grave crise no mundo bruxo.
-    </p>
+<body>
 
-    <hr>
+  <header class="bg-dark text-white text-center py-5">
+    <h1 class="display-4 gradient-text">Olá! Eu sou Jaasiel Miranda da Silva</h1>
+    <p class="lead">Candidato à vaga de Estágio PF - Crédito Consignado no Itaú</p>
+  </header>
 
-    <h2 class="mt-5">📌 Contexto</h2>
-    <ul>
-      <li>Desemprego no mundo bruxo: 12%</li>
-      <li>60% das famílias mágicas com dificuldade de pagar dívidas</li>
-      <li>Inadimplência em financiamentos de itens mágicos no maior patamar</li>
-      <li>Objetivo: definir perfis de risco e ajustar as ofertas de crédito</li>
-    </ul>
+  <div class="container">
+    <section class="section">
+      <h2>👋 Sobre Mim</h2>
+      <p>
+        Tenho formação técnica em informática e atualmente estudo desenvolvimento Java Full Stack. Gosto de aprender, analisar dados e resolver problemas práticos.
+        Sou uma pessoa focada, disciplinada e acredito na combinação entre tecnologia, processos e pessoas para gerar valor.
+      </p>
+    </section>
 
-    <h2 class="mt-5">📈 Análises</h2>
+    <section class="section">
+      <h2>💻 Tecnologias que domino</h2>
+      <div class="d-flex flex-wrap">
+        <div class="icon text-primary"><i class="bi bi-filetype-java"></i><br/>Java</div>
+        <div class="icon text-success"><i class="bi bi-database"></i><br/>MySQL</div>
+        <div class="icon text-warning"><i class="bi bi-braces"></i><br/>Spring Boot</div>
+        <div class="icon text-danger"><i class="bi bi-filetype-html"></i><br/>HTML5</div>
+        <div class="icon text-info"><i class="bi bi-filetype-css"></i><br/>CSS3</div>
+        <div class="icon text-primary"><i class="bi bi-git"></i><br/>Git</div>
+        <div class="icon text-dark"><i class="bi bi-github"></i><br/>GitHub</div>
+        <div class="icon text-success"><i class="bi bi-terminal"></i><br/>Linux</div>
+        <div class="icon text-secondary"><i class="bi bi-file-earmark-spreadsheet"></i><br/>Excel</div>
+      </div>
+    </section>
 
-    <div class="mb-5">
-      <h3>% Inadimplência por Tipo de Produto</h3>
-      <canvas id="produtoChart" height="100"></canvas>
-    </div>
+    <section class="section">
+      <h2>🧠 Por que o Itaú deve me contratar?</h2>
+      <ul>
+        <li>Tenho raciocínio analítico e experiência com análise de dados financeiros</li>
+        <li>Me interesso por crédito consignado, produtos bancários e sua aplicação prática</li>
+        <li>Sou disciplinado, organizado e atento aos detalhes — essenciais para lidar com crédito</li>
+        <li>Alinho meus objetivos com os valores do Itaú: ética, inovação e foco no cliente</li>
+      </ul>
+    </section>
 
-    <div class="mb-5">
-      <h3>% Inadimplência por Local da Venda</h3>
-      <canvas id="localChart" height="100"></canvas>
-    </div>
+    <section class="section">
+      <h2>🚀 O que posso agregar ao time de Crédito Consignado</h2>
+      <p>
+        Tenho familiaridade com Excel, tabelas dinâmicas e lógica de inadimplência, o que me permite colaborar na análise e melhoria das políticas de crédito.
+        Estou comprometido com o aprendizado contínuo, trago curiosidade, responsabilidade e iniciativa.
+        Minha base técnica me ajuda a ter um olhar prático e estruturado sobre processos financeiros.
+      </p>
+    </section>
 
-    <div class="mb-5">
-      <h3>% Inadimplência por Histórico de Crédito</h3>
-      <canvas id="creditoChart" height="100"></canvas>
-    </div>
-
-    <div class="mb-5">
-      <h3>% Inadimplência por Poder Aquisitivo</h3>
-      <canvas id="poderChart" height="100"></canvas>
-    </div>
-
-    <h2 class="mt-5">✅ Recomendações</h2>
-    <ul>
-      <li>Restringir crédito para perfis com histórico de alto risco ou sem histórico</li>
-      <li>Aumentar exigência para produtos com alta inadimplência (ex: vassouras de corrida)</li>
-      <li>Diferenciar a oferta por local de venda (regiões mais críticas devem ter avaliação especial)</li>
-      <li>Monitorar de perto bruxos com baixo poder aquisitivo</li>
-    </ul>
-
-    <h2 class="mt-5">📌 Conclusão</h2>
-    <p>
-      A análise de inadimplência permite ao Gringotts ajustar sua política de crédito para garantir
-      segurança financeira mesmo em tempos de crise mágica. Uma abordagem baseada em dados é essencial
-      para a sustentabilidade do banco e para o crescimento saudável do mundo bruxo.
-    </p>
-
-    <footer class="mt-5 text-center">
+    <footer class="text-center py-4">
       <hr>
-      <p>Feito por [Seu Nome] · <a href="https://github.com/seuusuario/seurepositorio" target="_blank">Ver no GitHub</a></p>
+      <p>📫 <strong>Entre em contato:</strong></p>
+      <p>
+        <a href="https://github.com/jaasielmiranda" target="_blank"><i class="bi bi-github"></i> GitHub</a> ·
+        <a href="mailto:seuemail@email.com"><i class="bi bi-envelope"></i> Email</a>
+      </p>
     </footer>
   </div>
 
-  <script>
-    // Exemplo de estrutura para preencher futuramente com dados reais
-    const dummyData = {
-      labels: ["Produto A", "Produto B", "Produto C"],
-      datasets: [{
-        label: "% Inadimplência",
-        data: [12, 8, 20],
-        backgroundColor: ["#dc3545", "#ffc107", "#0d6efd"]
-      }]
-    };
-
-    const config = {
-      type: 'bar',
-      data: dummyData,
-      options: {
-        responsive: true,
-        plugins: {
-          legend: { display: false }
-        },
-        scales: {
-          y: { beginAtZero: true, ticks: { callback: value => value + "%" } }
-        }
-      }
-    };
-
-    new Chart(document.getElementById("produtoChart"), config);
-    new Chart(document.getElementById("localChart"), config);
-    new Chart(document.getElementById("creditoChart"), config);
-    new Chart(document.getElementById("poderChart"), config);
-  </script>
 </body>
 </html>
