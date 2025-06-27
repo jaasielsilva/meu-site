@@ -12,13 +12,13 @@ body, html {
   height: 100%;
   background: #f5f7fa;
   color: #2c3e50;
-  overflow: hidden; /* previne scroll externo */
+  overflow: hidden;
 }
 
 .app-container {
   display: flex;
-  height: 100vh;   /* altura fixa da viewport */
-  overflow: hidden; /* evita scroll externo */
+  height: 100vh;
+  overflow: hidden;
 }
 
 .sidebar {
@@ -30,8 +30,9 @@ body, html {
   justify-content: space-between;
   padding: 0;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  height: 100vh; /* sidebar ocupa altura total da tela */
-  overflow-y: auto; /* scroll interno se conteúdo for maior */
+  height: 100vh;
+  overflow-y: auto;
+  transition: left 0.3s;
 }
 
 .user-panel {
@@ -40,7 +41,7 @@ body, html {
   align-items: center;
   padding: 30px 20px 20px;
   border-bottom: 1px solid #334155;
-  flex-shrink: 0; /* impede encolhimento */
+  flex-shrink: 0;
 }
 
 .user-avatar {
@@ -62,7 +63,7 @@ body, html {
 
 .sidebar nav {
   flex-grow: 1;
-  overflow-y: auto; /* scroll interno para menu longo */
+  overflow-y: auto;
   padding: 20px 0;
 }
 
@@ -101,8 +102,8 @@ body, html {
   display: flex;
   flex-direction: column;
   background: #fff;
-  height: 100vh; /* ocupa toda a altura da tela */
-  overflow-y: auto; /* scroll vertical interno */
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .topbar {
@@ -113,7 +114,7 @@ body, html {
   justify-content: space-between;
   padding: 0 30px;
   border-bottom: 1px solid #e5e7eb;
-  flex-shrink: 0; /* não encolhe */
+  flex-shrink: 0;
 }
 
 .topbar .title {
@@ -135,15 +136,17 @@ body, html {
   font-size: 18px;
 }
 
+.topbar .menu-toggle {
+  display: none;
+}
+
 .content-area {
   padding: 30px;
   flex-grow: 1;
-  overflow-y: auto; /* scroll vertical se necessário */
-  /* limita a altura do conteúdo para não estourar a tela */
+  overflow-y: auto;
   max-height: calc(100vh - 60px);
 }
 
-/* o restante do seu CSS permanece igual */
 .content-area h1 { font-size: 28px; margin-bottom: 15px; color: #0f172a; }
 .content-area h2 { font-size: 18px; margin-bottom: 30px; color: #475569; font-weight: 500; }
 
@@ -242,6 +245,29 @@ body, html {
   text-decoration: underline;
 }
 
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: -280px;
+    top: 0;
+    z-index: 999;
+  }
+  .sidebar.open {
+    left: 0;
+  }
+  .topbar .menu-toggle {
+    display: block;
+  }
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+  }
+  .action-buttons a {
+    flex: 1 1 100%;
+  }
+  .content-area {
+    padding: 20px;
+  }
+}
   </style>
 </head>
 <body>
@@ -254,32 +280,33 @@ body, html {
         </div>
         <nav>
           <ul>
-            <li><a href="/dashboard"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
-            <li><a href="/usuarios"><i class="fas fa-user-friends"></i> <span>Usuários</span></a></li>
-            <li><a href="/permissoes"><i class="fas fa-user-shield"></i> <span>Perfis e Permissões</span></a></li>
-            <li><a href="/clientes"><i class="fas fa-address-book"></i> <span>Clientes</span></a></li>
-            <li><a href="/fornecedores"><i class="fas fa-handshake"></i> <span>Fornecedores</span></a></li>
-            <li><a href="/produtos"><i class="fas fa-boxes"></i> <span>Produtos</span></a></li>
-            <li><a href="/estoque"><i class="fas fa-warehouse"></i> <span>Estoque</span></a></li>
-            <li><a href="/vendas"><i class="fas fa-cash-register"></i> <span>Vendas</span></a></li>
-            <li><a href="/financeiro"><i class="fas fa-wallet"></i> <span>Financeiro</span></a></li>
-            <li><a href="/contas-pagar"><i class="fas fa-money-check-alt"></i> <span>Contas a Pagar</span></a></li>
-            <li><a href="/contas-receber"><i class="fas fa-file-invoice-dollar"></i> <span>Contas a Receber</span></a></li>
-            <li><a href="/transferencias"><i class="fas fa-exchange-alt"></i> <span>Transferências</span></a></li>
-            <li><a href="/servicos"><i class="fas fa-tools"></i> <span>Serviços</span></a></li>
-            <li><a href="/agenda"><i class="fas fa-calendar-check"></i> <span>Agenda</span></a></li>
-            <li><a href="/projetos"><i class="fas fa-tasks"></i> <span>Projetos</span></a></li>
-            <li><a href="/relatorios"><i class="fas fa-chart-pie"></i> <span>Relatórios</span></a></li>
-            <li><a href="/perfil"><i class="fas fa-user-cog"></i> <span>Meu Perfil</span></a></li>
-            <li><a href="/configuracoes"><i class="fas fa-cogs"></i> <span>Configurações</span></a></li>
-            <li><a href="/contato"><i class="fas fa-envelope"></i> <span>Contato</span></a></li>
-            <li><a href="/logout"><i class="fas fa-power-off"></i> <span>Sair</span></a></li>
+            <li><a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="/usuarios"><i class="fas fa-user-friends"></i> Usuários</a></li>
+            <li><a href="/permissoes"><i class="fas fa-user-shield"></i> Perfis e Permissões</a></li>
+            <li><a href="/clientes"><i class="fas fa-address-book"></i> Clientes</a></li>
+            <li><a href="/fornecedores"><i class="fas fa-handshake"></i> Fornecedores</a></li>
+            <li><a href="/produtos"><i class="fas fa-boxes"></i> Produtos</a></li>
+            <li><a href="/estoque"><i class="fas fa-warehouse"></i> Estoque</a></li>
+            <li><a href="/vendas"><i class="fas fa-cash-register"></i> Vendas</a></li>
+            <li><a href="/financeiro"><i class="fas fa-wallet"></i> Financeiro</a></li>
+            <li><a href="/contas-pagar"><i class="fas fa-money-check-alt"></i> Contas a Pagar</a></li>
+            <li><a href="/contas-receber"><i class="fas fa-file-invoice-dollar"></i> Contas a Receber</a></li>
+            <li><a href="/transferencias"><i class="fas fa-exchange-alt"></i> Transferências</a></li>
+            <li><a href="/servicos"><i class="fas fa-tools"></i> Serviços</a></li>
+            <li><a href="/agenda"><i class="fas fa-calendar-check"></i> Agenda</a></li>
+            <li><a href="/projetos"><i class="fas fa-tasks"></i> Projetos</a></li>
+            <li><a href="/relatorios"><i class="fas fa-chart-pie"></i> Relatórios</a></li>
+            <li><a href="/perfil"><i class="fas fa-user-cog"></i> Meu Perfil</a></li>
+            <li><a href="/configuracoes"><i class="fas fa-cogs"></i> Configurações</a></li>
+            <li><a href="/contato"><i class="fas fa-envelope"></i> Contato</a></li>
+            <li><a href="/logout"><i class="fas fa-power-off"></i> Sair</a></li>
           </ul>
         </nav>
       </div>
     </aside>
     <main class="main-content">
       <header class="topbar">
+        <div class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
         <div class="title">Painel do CEO - ERP Corporativo</div>
         <div class="user-info">
           <i class="fas fa-user-circle"></i> Jaasiel Silva
@@ -323,6 +350,10 @@ body, html {
     </main>
   </div>
   <script>
+    function toggleSidebar() {
+      document.querySelector('.sidebar').classList.toggle('open');
+    }
+
     const ctx = document.getElementById('graficoVendas').getContext('2d');
     const chart = new Chart(ctx, {
       type: 'line',
