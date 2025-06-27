@@ -7,298 +7,272 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+body, html {
+  height: 100%;
+  background: #f5f7fa;
+  color: #2c3e50;
+  overflow: hidden;
+}
 
-    body, html {
-      height: 100%;
-      background: #f5f7fa;
-      color: #2c3e50;
-      overflow: hidden;
-    }
+.app-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
 
-    .app-container {
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-    }
+.sidebar {
+  background-color: #1f2937;
+  color: #fff;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  height: 100vh;
+  overflow-y: auto;
+  transition: left 0.3s;
+}
 
-    .sidebar {
-      background-color: #1f2937;
-      color: #fff;
-      width: 280px;
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 0;
-      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-      height: 100vh;
-      overflow-y: auto;
-      transition: transform 0.3s ease-in-out;
-    }
+.user-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 20px 20px;
+  border-bottom: 1px solid #334155;
+  flex-shrink: 0;
+}
 
-    .sidebar.closed {
-      transform: translateX(-100%);
-    }
+.user-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #3b82f6;
+  margin-bottom: 10px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
 
-    .user-panel {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 30px 20px 20px;
-      border-bottom: 1px solid #334155;
-      flex-shrink: 0;
-    }
+.user-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #e2e8f0;
+  text-align: center;
+}
 
-    .user-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #3b82f6;
-      margin-bottom: 10px;
-      box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
-    }
+.sidebar nav {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 20px 0;
+}
 
-    .user-name {
-      font-size: 16px;
-      font-weight: 500;
-      color: #e2e8f0;
-      text-align: center;
-    }
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
 
-    .sidebar nav {
-      flex-grow: 1;
-      overflow-y: auto;
-      padding: 20px 0;
-    }
+.sidebar nav ul li a {
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+  color: #cbd5e1;
+  text-decoration: none;
+  font-size: 16px;
+  border-left: 4px solid transparent;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+}
 
-    .sidebar nav ul {
-      list-style: none;
-      padding: 0;
-    }
+.sidebar nav ul li a i {
+  width: 24px;
+  margin-right: 15px;
+  text-align: center;
+  font-size: 18px;
+}
 
-    .sidebar nav ul li a {
-      display: flex;
-      align-items: center;
-      padding: 15px 30px;
-      color: #cbd5e1;
-      text-decoration: none;
-      font-size: 16px;
-      border-left: 4px solid transparent;
-      transition: background-color 0.3s, border-color 0.3s, color 0.3s;
-    }
+.sidebar nav ul li a:hover,
+.sidebar nav ul li a.active {
+  background-color: #334155;
+  color: #fff;
+  border-left: 4px solid #3b82f6;
+}
 
-    .sidebar nav ul li a i {
-      width: 24px;
-      margin-right: 15px;
-      text-align: center;
-      font-size: 18px;
-    }
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  height: 100vh;
+  overflow-y: auto;
+}
 
-    .sidebar nav ul li a:hover,
-    .sidebar nav ul li a.active {
-      background-color: #334155;
-      color: #fff;
-      border-left: 4px solid #3b82f6;
-    }
+.topbar {
+  background-color: #f3f4f6;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  border-bottom: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
 
-    .main-content {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      background: #fff;
-      height: 100vh;
-      overflow-y: auto;
-    }
+.topbar .title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+}
 
-    .topbar {
-      background-color: #f3f4f6;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 30px;
-      border-bottom: 1px solid #e5e7eb;
-      flex-shrink: 0;
-    }
+.topbar .user-info {
+  font-size: 14px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-    .topbar .title {
-      font-size: 20px;
-      font-weight: 600;
-      color: #1e293b;
-    }
+.topbar .user-info i {
+  color: #3b82f6;
+  font-size: 18px;
+}
 
-    .menu-toggle {
-      display: none;
-      font-size: 24px;
-      background: none;
-      border: none;
-      color: #1e293b;
-      cursor: pointer;
-    }
+.topbar .menu-toggle {
+  display: none;
+}
 
-    .topbar .user-info {
-      font-size: 14px;
-      color: #64748b;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+.content-area {
+  padding: 30px;
+  flex-grow: 1;
+  overflow-y: auto;
+  max-height: calc(100vh - 60px);
+}
 
-    .topbar .user-info i {
-      color: #3b82f6;
-      font-size: 18px;
-    }
+.content-area h1 { font-size: 28px; margin-bottom: 15px; color: #0f172a; }
+.content-area h2 { font-size: 18px; margin-bottom: 30px; color: #475569; font-weight: 500; }
 
-    .content-area {
-      padding: 30px;
-      flex-grow: 1;
-      overflow-y: auto;
-      max-height: calc(100vh - 60px);
-    }
+.dashboard-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
 
-    .content-area h1 {
-      font-size: 28px;
-      margin-bottom: 15px;
-      color: #0f172a;
-    }
+.card-metric {
+  background: #1f2937;
+  color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
 
-    .content-area h2 {
-      font-size: 18px;
-      margin-bottom: 30px;
-      color: #475569;
-      font-weight: 500;
-    }
+.card-metric h4 { font-size: 16px; margin-bottom: 8px; color: #cbd5e1; }
+.card-metric p { font-size: 24px; font-weight: bold; }
 
-    .dashboard-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
-      margin-bottom: 30px;
-    }
+.card {
+  background-color: #f8fafc;
+  border-radius: 8px;
+  padding: 25px 30px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+  margin-bottom: 30px;
+  color: #334155;
+}
 
-    .card-metric {
-      background: #1f2937;
-      color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    }
+.card h3 { margin-bottom: 20px; font-weight: 600; font-size: 22px; }
 
-    .card-metric h4 {
-      font-size: 16px;
-      margin-bottom: 8px;
-      color: #cbd5e1;
-    }
+.table-list {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
 
-    .card-metric p {
-      font-size: 24px;
-      font-weight: bold;
-    }
+.table-list th,
+.table-list td {
+  padding: 12px 15px;
+  border: 1px solid #e5e7eb;
+  text-align: left;
+  font-size: 14px;
+}
 
-    .card {
-      background-color: #f8fafc;
-      border-radius: 8px;
-      padding: 25px 30px;
-      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
-      margin-bottom: 30px;
-      color: #334155;
-    }
+.table-list th {
+  background-color: #f1f5f9;
+  font-weight: 600;
+  color: #1e293b;
+}
 
-    .card h3 {
-      margin-bottom: 20px;
-      font-weight: 600;
-      font-size: 22px;
-    }
+.table-list tbody tr:hover { background-color: #f8fafc; }
 
-    .table-responsive {
-      overflow-x: auto;
-    }
+.action-buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
 
-    .table-list {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
+.action-buttons a {
+  background-color: #3b82f6;
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  box-shadow: 0 3px 6px rgb(59 130 246 / 0.4);
+  transition: background-color 0.3s ease;
+  flex: 1 1 180px;
+  text-align: center;
+}
 
-    .table-list th,
-    .table-list td {
-      padding: 12px 15px;
-      border: 1px solid #e5e7eb;
-      text-align: left;
-      font-size: 14px;
-    }
+.action-buttons a:hover {
+  background-color: #2563eb;
+  box-shadow: 0 4px 8px rgb(37 99 235 / 0.6);
+}
 
-    .table-list th {
-      background-color: #f1f5f9;
-      font-weight: 600;
-      color: #1e293b;
-    }
+.footer {
+  text-align: center;
+  font-size: 14px;
+  padding: 20px 0;
+  color: #94a3b8;
+  border-top: 1px solid #e5e7eb;
+}
 
-    .table-list tbody tr:hover {
-      background-color: #f8fafc;
-    }
+.footer a {
+  color: #3b82f6;
+  text-decoration: none;
+}
 
-    .action-buttons {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-    }
+.footer a:hover {
+  text-decoration: underline;
+}
 
-    .action-buttons a {
-      background-color: #3b82f6;
-      color: #fff;
-      padding: 14px 28px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 16px;
-      text-decoration: none;
-      box-shadow: 0 3px 6px rgb(59 130 246 / 0.4);
-      transition: background-color 0.3s ease;
-      flex: 1 1 180px;
-      text-align: center;
-    }
-
-    .action-buttons a:hover {
-      background-color: #2563eb;
-      box-shadow: 0 4px 8px rgb(37 99 235 / 0.6);
-    }
-
-    .footer {
-      text-align: center;
-      font-size: 14px;
-      padding: 20px 0;
-      color: #94a3b8;
-      border-top: 1px solid #e5e7eb;
-    }
-
-    .footer a {
-      color: #3b82f6;
-      text-decoration: none;
-    }
-
-    .footer a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-    }
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    left: -280px;
+    top: 0;
+    z-index: 999;
+  }
+  .sidebar.open {
+    left: 0;
+  }
+  .topbar .menu-toggle {
+    display: block;
+  }
+  .dashboard-cards {
+    grid-template-columns: 1fr;
+  }
+  .action-buttons a {
+    flex: 1 1 100%;
+  }
+  .content-area {
+    padding: 20px;
+  }
+}
   </style>
 </head>
 <body>
   <div class="app-container">
-    <aside class="sidebar" id="sidebar">
+    <aside class="sidebar">
       <div>
         <div class="user-panel">
           <img src="https://i.pravatar.cc/100?u=jaasiel" alt="Usuário" class="user-avatar">
@@ -308,8 +282,23 @@
           <ul>
             <li><a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
             <li><a href="/usuarios"><i class="fas fa-user-friends"></i> Usuários</a></li>
+            <li><a href="/permissoes"><i class="fas fa-user-shield"></i> Perfis e Permissões</a></li>
             <li><a href="/clientes"><i class="fas fa-address-book"></i> Clientes</a></li>
-            <!-- ... continue os demais links ... -->
+            <li><a href="/fornecedores"><i class="fas fa-handshake"></i> Fornecedores</a></li>
+            <li><a href="/produtos"><i class="fas fa-boxes"></i> Produtos</a></li>
+            <li><a href="/estoque"><i class="fas fa-warehouse"></i> Estoque</a></li>
+            <li><a href="/vendas"><i class="fas fa-cash-register"></i> Vendas</a></li>
+            <li><a href="/financeiro"><i class="fas fa-wallet"></i> Financeiro</a></li>
+            <li><a href="/contas-pagar"><i class="fas fa-money-check-alt"></i> Contas a Pagar</a></li>
+            <li><a href="/contas-receber"><i class="fas fa-file-invoice-dollar"></i> Contas a Receber</a></li>
+            <li><a href="/transferencias"><i class="fas fa-exchange-alt"></i> Transferências</a></li>
+            <li><a href="/servicos"><i class="fas fa-tools"></i> Serviços</a></li>
+            <li><a href="/agenda"><i class="fas fa-calendar-check"></i> Agenda</a></li>
+            <li><a href="/projetos"><i class="fas fa-tasks"></i> Projetos</a></li>
+            <li><a href="/relatorios"><i class="fas fa-chart-pie"></i> Relatórios</a></li>
+            <li><a href="/perfil"><i class="fas fa-user-cog"></i> Meu Perfil</a></li>
+            <li><a href="/configuracoes"><i class="fas fa-cogs"></i> Configurações</a></li>
+            <li><a href="/contato"><i class="fas fa-envelope"></i> Contato</a></li>
             <li><a href="/logout"><i class="fas fa-power-off"></i> Sair</a></li>
           </ul>
         </nav>
@@ -317,9 +306,11 @@
     </aside>
     <main class="main-content">
       <header class="topbar">
-        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <div class="menu-toggle" onclick="toggleSidebar()"><i class="fas fa-bars"></i></div>
         <div class="title">Painel do CEO - ERP Corporativo</div>
-        <div class="user-info"><i class="fas fa-user-circle"></i> Jaasiel Silva</div>
+        <div class="user-info">
+          <i class="fas fa-user-circle"></i> Jaasiel Silva
+        </div>
       </header>
       <section class="content-area">
         <h1>Gestão empresarial unificada e inteligente</h1>
@@ -336,17 +327,13 @@
         </article>
         <article class="card">
           <h3>Últimas Vendas</h3>
-          <div class="table-responsive">
-            <table class="table-list">
-              <thead>
-                <tr><th>ID</th><th>Cliente</th><th>Produto</th><th>Valor</th><th>Data</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>#00123</td><td>Empresa XYZ</td><td>Notebook</td><td>R$ 4.500,00</td><td>26/06/2025</td></tr>
-                <tr><td>#00124</td><td>João da Silva</td><td>Mouse</td><td>R$ 80,00</td><td>26/06/2025</td></tr>
-              </tbody>
-            </table>
-          </div>
+          <table class="table-list">
+            <thead><tr><th>ID</th><th>Cliente</th><th>Produto</th><th>Valor</th><th>Data</th></tr></thead>
+            <tbody>
+              <tr><td>#00123</td><td>Empresa XYZ</td><td>Notebook</td><td>R$ 4.500,00</td><td>26/06/2025</td></tr>
+              <tr><td>#00124</td><td>João da Silva</td><td>Mouse</td><td>R$ 80,00</td><td>26/06/2025</td></tr>
+            </tbody>
+          </table>
         </article>
         <div class="action-buttons">
           <a href="/demo">Ver Demonstração</a>
@@ -362,8 +349,11 @@
       </section>
     </main>
   </div>
-
   <script>
+    function toggleSidebar() {
+      document.querySelector('.sidebar').classList.toggle('open');
+    }
+
     const ctx = document.getElementById('graficoVendas').getContext('2d');
     const chart = new Chart(ctx, {
       type: 'line',
@@ -382,10 +372,6 @@
         plugins: { legend: { display: true } }
       }
     });
-
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('closed');
-    }
   </script>
 </body>
 </html>
