@@ -1,240 +1,399 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Premium - Portal CEO</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard - ERP Corporativo</title>
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Bootstrap 5 e Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <style>
     body {
-      background-color: #f8f9fa;
-      font-family: 'Inter', sans-serif;
+      background-color: #f5f6fa;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
-
-    .main-content {
-      margin-left: 250px;
-      padding: 20px;
+    .sidebar {
+      min-height: 100vh;
+      background: #111827;
+      color: #e5e7eb;
     }
-
-    .card {
-      border-radius: 1rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    .sidebar a {
+      color: #9ca3af;
+      text-decoration: none;
+      display: block;
+      padding: 0.6rem 1rem;
+      border-radius: 0.375rem;
+      margin-bottom: 0.25rem;
     }
-
-    .card-icon {
-      font-size: 2rem;
-      opacity: 0.8;
+    .sidebar a.active,
+    .sidebar a:hover {
+      background: #1f2937;
+      color: #ffffff;
     }
-
-    .card-value {
-      font-size: 1.6rem;
-      font-weight: bold;
+    .card-kpi {
+      border: none;
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
     }
-
-    .chart-container {
-      background: white;
-      padding: 20px;
-      border-radius: 1rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      margin-bottom: 20px;
-    }
-
-    .table-container {
-      background: white;
-      padding: 20px;
-      border-radius: 1rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    .notifications {
-      position: fixed;
-      top: 80px;
-      right: 20px;
-      width: 300px;
-      z-index: 1050;
-    }
-
-    .notification-item {
-      background: #fff;
-      padding: 12px 15px;
-      border-radius: 0.5rem;
-      margin-bottom: 10px;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    .card-kpi .icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: center;
+      color: #ffffff;
     }
-
-    .notification-item i {
-      font-size: 1.3rem;
-      color: #0d6efd;
+    .chip {
+      font-size: 0.75rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+    }
+    .table thead th {
+      border-bottom-width: 1px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .kpi-label {
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+    .kpi-value {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+    .timeline-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      margin-right: 0.5rem;
     }
   </style>
 </head>
-
 <body>
-  <!-- Sidebar -->
-  <div th:replace="::sidebar"></div>
+<div class="container-fluid">
+  <div class="row">
+    <!-- SIDEBAR -->
+    <aside class="col-12 col-md-3 col-lg-2 sidebar p-3">
+      <h5 class="mb-3">
+        <i class="fa-solid fa-cubes me-2"></i>ERP Corporativo
+      </h5>
 
-  <!-- Conteúdo Principal -->
-  <div class="main-content container-fluid">
-    <h1 class="mb-4">Dashboard Premium</h1>
+      <div class="mb-2 text-uppercase" style="font-size: 0.7rem; color:#6b7280;">
+        Principal
+      </div>
+      <a href="#" class="active"><i class="fa-solid fa-chart-line me-2"></i>Dashboard</a>
+      <a href="#"><i class="fa-solid fa-user-tie me-2"></i>Clientes</a>
+      <a href="#"><i class="fa-solid fa-cart-shopping me-2"></i>Vendas</a>
+      <a href="#"><i class="fa-solid fa-boxes-stacked me-2"></i>Estoque</a>
+      <a href="#"><i class="fa-solid fa-users-gear me-2"></i>Recursos Humanos</a>
+      <a href="#"><i class="fa-solid fa-file-invoice-dollar me-2"></i>Financeiro</a>
 
-    <!-- Cards de Métricas -->
-    <div class="row g-4 mb-4">
-      <div class="col-md-3">
-        <div class="card p-3">
-          <div class="d-flex align-items-center">
-            <i class="fas fa-users card-icon text-primary me-3"></i>
-            <div>
-              <div class="card-value" th:text="${totalUsuarios}">1.245</div>
-              <div class="text-muted">Usuários Ativos</div>
+      <div class="mt-3 mb-2 text-uppercase" style="font-size: 0.7rem; color:#6b7280;">
+        Administração
+      </div>
+      <a href="#"><i class="fa-solid fa-gear me-2"></i>Configurações</a>
+      <a href="#"><i class="fa-solid fa-shield-halved me-2"></i>Segurança</a>
+      <a href="#"><i class="fa-solid fa-file-lines me-2"></i>Relatórios</a>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="col-12 col-md-9 col-lg-10 p-4">
+
+      <!-- Topo: título + usuário -->
+      <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+        <div>
+          <h3 class="mb-0">Dashboard Geral</h3>
+          <small class="text-muted">
+            Visão consolidada de vendas, clientes, estoque e RH (dados estáticos de exemplo).
+          </small>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div class="text-end">
+            <div style="font-size: 0.85rem;">Usuário: <strong>Master</strong></div>
+            <div class="text-muted" style="font-size: 0.75rem;">Ambiente: DEV • Java 17</div>
+          </div>
+          <div class="rounded-circle bg-secondary-subtle d-flex align-items-center justify-content-center"
+               style="width: 40px; height: 40px;">
+            <i class="fa-solid fa-user"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPIs PRINCIPAIS -->
+      <div class="row g-3 mb-4">
+        <!-- Faturamento -->
+        <div class="col-12 col-md-6 col-xl-3">
+          <div class="card card-kpi p-3">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="kpi-label">Faturamento (últimos 12 meses)</div>
+                <div class="kpi-value">R$ 1.280.450,90</div>
+                <span class="chip bg-success-subtle text-success">
+                  <i class="fa-solid fa-arrow-up me-1"></i>+18,3% vs. ano anterior
+                </span>
+              </div>
+              <div class="icon bg-indigo-500" style="background:#4f46e5;">
+                <i class="fa-solid fa-coins"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vendas -->
+        <div class="col-12 col-md-6 col-xl-3">
+          <div class="card card-kpi p-3">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="kpi-label">Vendas (mês atual)</div>
+                <div class="kpi-value">342 pedidos</div>
+                <span class="chip bg-success-subtle text-success">
+                  <i class="fa-solid fa-arrow-up me-1"></i>+9,1% vs. mês anterior
+                </span>
+              </div>
+              <div class="icon" style="background:#16a34a;">
+                <i class="fa-solid fa-cart-shopping"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Clientes ativos -->
+        <div class="col-12 col-md-6 col-xl-3">
+          <div class="card card-kpi p-3">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="kpi-label">Clientes Ativos</div>
+                <div class="kpi-value">1.248</div>
+                <span class="chip bg-primary-subtle text-primary">
+                  <i class="fa-solid fa-user-check me-1"></i>+48 novos nos últimos 30 dias
+                </span>
+              </div>
+              <div class="icon" style="background:#0ea5e9;">
+                <i class="fa-solid fa-users"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Estoque crítico -->
+        <div class="col-12 col-md-6 col-xl-3">
+          <div class="card card-kpi p-3">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div class="kpi-label">Produtos em Estoque</div>
+                <div class="kpi-value">8.420 un.</div>
+                <span class="chip bg-danger-subtle text-danger">
+                  <i class="fa-solid fa-triangle-exclamation me-1"></i>37 itens em nível crítico
+                </span>
+              </div>
+              <div class="icon" style="background:#dc2626;">
+                <i class="fa-solid fa-boxes-stacked"></i>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="card p-3">
-          <div class="d-flex align-items-center">
-            <i class="fas fa-dollar-sign card-icon text-success me-3"></i>
-            <div>
-              <div class="card-value" th:text="${vendasMes}">R$ 85.400</div>
-              <div class="text-muted">Vendas do Mês</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card p-3">
-          <div class="d-flex align-items-center">
-            <i class="fas fa-boxes card-icon text-warning me-3"></i>
-            <div>
-              <div class="card-value" th:text="${produtosEstoque}">320</div>
-              <div class="text-muted">Produtos em Estoque</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="card p-3">
-          <div class="d-flex align-items-center">
-            <i class="fas fa-tasks card-icon text-danger me-3"></i>
-            <div>
-              <div class="card-value" th:text="${tarefasPendentes}">12</div>
-              <div class="text-muted">Tarefas Pendentes</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Gráficos -->
-    <div class="row mb-4">
-      <div class="col-lg-6">
-        <div class="chart-container">
-          <h5>Vendas por Categoria</h5>
-          <canvas id="vendasChart" height="200"></canvas>
+      <!-- LINHA: gráfico simplificado + top clientes -->
+      <div class="row g-3 mb-4">
+        <!-- “Gráfico” simples em barras estáticas -->
+        <div class="col-12 col-xl-8">
+          <div class="card card-kpi p-3">
+            <div class="d-flex justify-content-between mb-2">
+              <div>
+                <h6 class="mb-0">Vendas por mês (simulado)</h6>
+                <small class="text-muted">
+                  Distribuição estática apenas para layout; depois troque por Chart.js ou backend.
+                </small>
+              </div>
+              <select class="form-select form-select-sm" style="max-width: 140px;">
+                <option>Últimos 6 meses</option>
+                <option>Últimos 12 meses</option>
+              </select>
+            </div>
+            <div class="d-flex align-items-end justify-content-between pt-3" style="height: 180px;">
+              <div class="text-center flex-fill">
+                <div class="bg-primary rounded-top mx-1" style="height: 45%;"></div>
+                <small class="text-muted">Jan</small>
+              </div>
+              <div class="text-center flex-fill">
+                <div class="bg-primary rounded-top mx-1" style="height: 60%;"></div>
+                <small class="text-muted">Fev</small>
+              </div>
+              <div class="text-center flex-fill">
+                <div class="bg-primary rounded-top mx-1" style="height: 55%;"></div>
+                <small class="text-muted">Mar</small>
+              </div>
+              <div class="text-center flex-fill">
+                <div class="bg-primary rounded-top mx-1" style="height: 80%;"></div>
+                <small class="text-muted">Abr</small>
+              </div>
+              <div class="text-center flex-fill">
+                <div class="bg-primary rounded-top mx-1" style="height: 70%;"></div>
+                <small class="text-muted">Mai</small>
+              </div>
+              <div class="text-center flex-fill">
+                <div class="bg-primary rounded-top mx-1" style="height: 100%;"></div>
+                <small class="text-muted">Jun</small>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="chart-container">
-          <h5>Performance RH</h5>
-          <canvas id="rhChart" height="200"></canvas>
-        </div>
-      </div>
-    </div>
 
-    <!-- Tabela de Últimas Solicitações -->
-    <div class="row mb-4">
-      <div class="col-12">
-        <div class="table-container">
-          <h5>Últimas Solicitações</h5>
-          <table class="table table-striped table-hover">
-            <thead>
+        <!-- Top clientes -->
+        <div class="col-12 col-xl-4">
+          <div class="card card-kpi p-3">
+            <div class="d-flex justify-content-between mb-2">
+              <h6 class="mb-0">Top 5 Clientes</h6>
+              <small class="text-muted">Base estática de exemplo</small>
+            </div>
+            <table class="table table-sm align-middle mb-0">
+              <thead>
               <tr>
-                <th>#ID</th>
-                <th>Colaborador</th>
-                <th>Serviço</th>
-                <th>Status</th>
-                <th>Data</th>
+                <th>Cliente</th>
+                <th class="text-end">Faturamento</th>
               </tr>
-            </thead>
-            <tbody>
+              </thead>
+              <tbody>
               <tr>
-                <td>1023</td>
-                <td>Maria Silva</td>
-                <td>Adesão Benefício</td>
-                <td><span class="badge bg-warning">Pendente</span></td>
-                <td>02/01/2026</td>
+                <td>Acme Indústria LTDA</td>
+                <td class="text-end">R$ 210.350,00</td>
               </tr>
               <tr>
-                <td>1022</td>
-                <td>João Souza</td>
-                <td>Cadastro Cliente</td>
-                <td><span class="badge bg-success">Concluído</span></td>
-                <td>01/01/2026</td>
+                <td>GlobalTech S/A</td>
+                <td class="text-end">R$ 187.900,00</td>
               </tr>
-            </tbody>
-          </table>
+              <tr>
+                <td>Comercial Alpha ME</td>
+                <td class="text-end">R$ 133.240,00</td>
+              </tr>
+              <tr>
+                <td>Hospital São Lucas</td>
+                <td class="text-end">R$ 96.730,00</td>
+              </tr>
+              <tr>
+                <td>Rede Market Fácil</td>
+                <td class="text-end">R$ 81.220,00</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
+
+      <!-- LINHA: RH / Operações / Sistema -->
+      <div class="row g-3">
+        <!-- Indicadores RH -->
+        <div class="col-12 col-xl-4">
+          <div class="card card-kpi p-3">
+            <h6 class="mb-2">Indicadores de RH</h6>
+            <small class="text-muted">Taxas simuladas para teste visual.</small>
+            <ul class="list-unstyled mt-3 mb-0">
+              <li class="d-flex justify-content-between mb-1">
+                <span>Quadro de colaboradores</span>
+                <span><strong>182</strong></span>
+              </li>
+              <li class="d-flex justify-content-between mb-1">
+                <span>Turnover (12 meses)</span>
+                <span class="text-success">4,3%</span>
+              </li>
+              <li class="d-flex justify-content-between mb-1">
+                <span>Absenteísmo (mês)</span>
+                <span class="text-warning">2,1%</span>
+              </li>
+              <li class="d-flex justify-content-between">
+                <span>Satisfação interna (eNPS)</span>
+                <span class="text-primary">+42</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Operações / logística -->
+        <div class="col-12 col-xl-4">
+          <div class="card card-kpi p-3">
+            <h6 class="mb-2">Operações & Logística</h6>
+            <small class="text-muted">KPIs de ciclo e qualidade.</small>
+            <ul class="list-unstyled mt-3 mb-0">
+              <li class="d-flex justify-content-between mb-1">
+                <span>Giro de estoque (ano)</span>
+                <span><strong>5,8x</strong></span>
+              </li>
+              <li class="d-flex justify-content-between mb-1">
+                <span>Tempo médio de entrega</span>
+                <span class="text-success">2,4 dias</span>
+              </li>
+              <li class="d-flex justify-content-between mb-1">
+                <span>Taxa de devolução</span>
+                <span class="text-danger">1,9%</span>
+              </li>
+              <li class="d-flex justify-content-between">
+                <span>Eficiência logística</span>
+                <span class="text-primary">93,1%</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Sistema / timeline -->
+        <div class="col-12 col-xl-4">
+          <div class="card card-kpi p-3">
+            <h6 class="mb-2">Status do Sistema</h6>
+            <small class="text-muted">Informações estáticas de ambiente e últimos eventos.</small>
+
+            <div class="mt-3 mb-2">
+              <div class="d-flex justify-content-between">
+                <span>Uptime</span>
+                <span><strong>3 dias 4h 18m</strong></span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span>Memória</span>
+                <span>2.1 GB / 4 GB</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span>Versão ERP</span>
+                <span>v1.3.0-dev</span>
+              </div>
+            </div>
+
+            <hr>
+
+            <div class="small fw-semibold mb-2">Últimos eventos</div>
+            <div class="d-flex align-items-center mb-2">
+              <div class="timeline-dot bg-success"></div>
+              <div>
+                <div>Job de faturamento concluído.</div>
+                <small class="text-muted">Hoje • 06:15</small>
+              </div>
+            </div>
+            <div class="d-flex align-items-center mb-2">
+              <div class="timeline-dot bg-primary"></div>
+              <div>
+                <div>Importação de XML de notas fiscais.</div>
+                <small class="text-muted">Ontem • 22:47</small>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="timeline-dot bg-warning"></div>
+              <div>
+                <div>Alerta: estoque crítico acima de 30 itens.</div>
+                <small class="text-muted">Ontem • 17:03</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
   </div>
+</div>
 
-  <!-- Notificações -->
-  <div class="notifications">
-    <div class="notification-item">
-      <i class="fas fa-info-circle"></i> Nova solicitação de Maria Silva
-    </div>
-    <div class="notification-item">
-      <i class="fas fa-check-circle"></i> Venda concluída: R$ 1.200
-    </div>
-  </div>
-
-  <!-- Scripts -->
-  <script>
-    // Chart de Vendas
-    const vendasCtx = document.getElementById('vendasChart').getContext('2d');
-    const vendasChart = new Chart(vendasCtx, {
-      type: 'doughnut',
-      data: {
-        labels: ['Produtos', 'Serviços', 'Projetos'],
-        datasets: [{
-          data: [55, 25, 20],
-          backgroundColor: ['#0d6efd', '#198754', '#ffc107'],
-        }]
-      },
-      options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
-    });
-
-    // Chart RH
-    const rhCtx = document.getElementById('rhChart').getContext('2d');
-    const rhChart = new Chart(rhCtx, {
-      type: 'bar',
-      data: {
-        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril'],
-        datasets: [{
-          label: 'Novos Colaboradores',
-          data: [5, 7, 3, 6],
-          backgroundColor: '#0d6efd'
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { display: false } },
-        scales: { y: { beginAtZero: true } }
-      }
-    });
-  </script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
