@@ -1,174 +1,278 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfólio | Jaasiel Silva</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Protótipo Sidebar Interativo - ERP</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #0d1117;
-      color: #ffffff;
-    }
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: #f4f5f7;
+    display: flex;
+  }
 
-    header {
-      background: linear-gradient(135deg, #8F0D87, #1f6feb);
-      padding: 50px 20px;
-      text-align: center;
-    }
+  /* Sidebar */
+  .sidebar {
+    width: 280px;
+    background-color: #1e2a38;
+    color: #ffffff;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 20px 0;
+    border-right: 2px solid #2c3e50;
+    overflow-y: auto;
+    transition: width 0.3s;
+  }
 
-    header h1 {
-      margin: 0;
-      font-size: 3rem;
-      font-weight: bold;
-    }
+  .sidebar.collapsed {
+    width: 80px;
+  }
 
-    header p {
-      margin-top: 10px;
-      font-size: 1.2rem;
-    }
+  .sidebar h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-    section {
-      padding: 40px 10%;
-    }
+  /* Menu items */
+  .menu-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+  }
 
-    h2 {
-      color: #58a6ff;
-      border-left: 4px solid #8F0D87;
-      padding-left: 10px;
-    }
+  .menu-item i {
+    font-size: 18px;
+    margin-right: 12px;
+    min-width: 20px;
+    text-align: center;
+  }
 
-    .card {
-      background: #161b22;
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 25px;
-      border: 1px solid #30363d;
-    }
+  .menu-item span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-    .badges img {
-      margin: 5px;
-    }
+  .menu-item:hover {
+    background-color: #2c3e50;
+  }
 
-    footer {
-      margin-top: 40px;
-      text-align: center;
-      padding-bottom: 0;
-    }
+  /* Submenu */
+  .submenu {
+    display: none;
+    flex-direction: column;
+    background-color: #273546;
+  }
 
-    a {
-      color: #58a6ff;
-      text-decoration: none;
-    }
+  .submenu a {
+    color: #cfd8dc;
+    text-decoration: none;
+    padding: 10px 40px;
+    transition: all 0.3s;
+    display: block;
+  }
 
-    a:hover {
-      text-decoration: underline;
-    }
+  .submenu a:hover {
+    background-color: #3a4a5a;
+    color: #ffffff;
+  }
 
-    .contact img {
-      margin-top: 10px;
-    }
+  .menu-item.active + .submenu {
+    display: flex;
+  }
 
-  </style>
+  /* Preview tooltip */
+  .preview {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background: #ffffff;
+    color: #000;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    display: none;
+    width: 250px;
+    font-size: 14px;
+    z-index: 10;
+  }
+
+  .menu-item:hover .preview {
+    display: block;
+  }
+
+  /* Content area */
+  .content {
+    margin-left: 280px;
+    padding: 20px;
+    flex: 1;
+    transition: margin-left 0.3s;
+  }
+
+  .sidebar.collapsed ~ .content {
+    margin-left: 80px;
+  }
+
+  /* Collapse button */
+  .collapse-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    color: #ffffff;
+  }
+
+</style>
 </head>
 
 <body>
+<div class="sidebar" id="sidebar">
+  <h2>ERP Portal</h2>
 
-<header>
-  <h1>Olá! Eu sou o Jaasiel Silva 👋</h1>
-  <p>Desenvolvedor Full Stack • Apaixonado por Tecnologia</p>
-</header>
-
-<section>
-
-  <div class="card">
-    <h2>Sobre Mim</h2>
-    <p>
-      Um apaixonado por tecnologia e estudante dedicado de <strong>Desenvolvimento Full Stack</strong>, sempre explorando novas oportunidades para crescer e dominar o mundo do desenvolvimento de software.
-    </p>
-    <p>🌍 <strong>Localização:</strong> Nascido em Belém/PA e morando em São Paulo/SP.</p>
-  </div>
-
-  <div class="card">
-    <h2>🧠 Estudando Atualmente</h2>
-    <ul>
-      <li>Desenvolvimento web com React.js e Node.js</li>
-      <li>Desenvolvimento de aplicativos Java com Spring Boot</li>
-    </ul>
-
-    <h3>Frontend</h3>
-    <div class="badges">
-      <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
-      <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
-      <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
-      <img src="https://img.shields.io/badge/React.js-61DAFB?style=for-the-badge&logo=react&logoColor=white"/>
-    </div>
-
-    <h3>Backend</h3>
-    <div class="badges">
-      <img src="https://img.shields.io/badge/Node.js_with_Express-339933?style=for-the-badge&logo=node.js&logoColor=white"/>
-      <img src="https://img.shields.io/badge/Java_with_Spring_Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white"/>
+  <div class="menu-item">
+    <i class="bi bi-speedometer2"></i>
+    <span>Dashboard</span>
+    <div class="preview">
+      Gráficos e indicadores principais do sistema. Resumo do desempenho da empresa.
     </div>
   </div>
-
-  <div class="card">
-    <h2>💼 Experiência Profissional</h2>
-    <p>
-      <strong>Assistente Administrativo – Hospital Albert Einstein</strong><br/>
-      <em>(2023 - Presente)</em>
-    </p>
+  <div class="submenu">
+    <a href="#">Visão Geral</a>
+    <a href="#">Gráficos</a>
+    <a href="#">Indicadores</a>
   </div>
 
-  <div class="card">
-    <h2>🌱 Atualmente Aprendendo</h2>
-    <ul>
-      <li>Aprofundando conhecimentos em Spring Boot</li>
-      <li>Explorando mais sobre React.js e Node.js</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>🚀 Projetos e Interesses</h2>
-    <ul>
-      <li>Aplicações web dinâmicas e escaláveis</li>
-      <li>APIs RESTful eficientes e seguras</li>
-      <li>Contribuição em projetos open source</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>📚 Bancos de Dados</h2>
-    <div class="badges">
-      <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white"/>
-      <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"/>
+  <div class="menu-item">
+    <i class="bi bi-people"></i>
+    <span>Clientes</span>
+    <div class="preview">
+      Gestão completa de clientes: cadastro, histórico de pedidos e relatórios detalhados.
     </div>
   </div>
+  <div class="submenu">
+    <a href="#">Listar Clientes</a>
+    <a href="#">Cadastrar Cliente</a>
+    <a href="#">Histórico de Pedidos</a>
+  </div>
 
-  <div class="card">
-    <h2>🛠 Ferramentas de Trabalho</h2>
-    <div class="badges">
-      <img src="https://img.shields.io/badge/vscode-4285F4?style=for-the-badge&logo=vscode&logoColor=white"/>
+  <div class="menu-item">
+    <i class="bi bi-cart"></i>
+    <span>Vendas</span>
+    <div class="preview">
+      PDV, pedidos, faturamento e relatórios de vendas detalhados.
     </div>
   </div>
-
-  <div class="card contact">
-    <h2>📫 Contatos</h2>
-    <a href="mailto:jasiel1@outlook.com">
-      <img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white"/>
-    </a>
-    <br><br>
-    <a href="https://www.linkedin.com/in/jaasiel-silva-4021a6229/">
-      <img src="https://img.shields.io/badge/LinkedIn-JaasielSilva-blue"/>
-    </a>
+  <div class="submenu">
+    <a href="#">Pedidos</a>
+    <a href="#">Faturamento</a>
+    <a href="#">Relatórios</a>
   </div>
 
-</section>
+  <div class="menu-item">
+    <i class="bi bi-box-seam"></i>
+    <span>Estoque</span>
+    <div class="preview">
+      Gerenciamento de produtos e estoque, categorias e alertas.
+    </div>
+  </div>
+  <div class="submenu">
+    <a href="#">Produtos</a>
+    <a href="#">Categorias</a>
+    <a href="#">Alertas de Estoque</a>
+  </div>
 
-<footer>
-  <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=8F0D87&height=120&section=footer"/>
-</footer>
+  <div class="menu-item">
+    <i class="bi bi-person-badge"></i>
+    <span>RH</span>
+    <div class="preview">
+      Colaboradores, folha de pagamento, ponto, férias e treinamentos.
+    </div>
+  </div>
+  <div class="submenu">
+    <a href="#">Colaboradores</a>
+    <a href="#">Folha de Pagamento</a>
+    <a href="#">Treinamentos</a>
+  </div>
 
+  <div class="menu-item">
+    <i class="bi bi-currency-dollar"></i>
+    <span>Financeiro</span>
+    <div class="preview">
+      Contas a pagar e receber, fluxo de caixa e relatórios financeiros.
+    </div>
+  </div>
+  <div class="submenu">
+    <a href="#">Contas a Pagar</a>
+    <a href="#">Contas a Receber</a>
+    <a href="#">Relatórios</a>
+  </div>
+
+  <div class="menu-item">
+    <i class="bi bi-megaphone"></i>
+    <span>Marketing</span>
+    <div class="preview">
+      Campanhas, leads, eventos e materiais de marketing.
+    </div>
+  </div>
+  <div class="submenu">
+    <a href="#">Campanhas</a>
+    <a href="#">Leads</a>
+    <a href="#">Eventos</a>
+  </div>
+
+  <div class="menu-item">
+    <i class="bi bi-shield-lock"></i>
+    <span>Jurídico</span>
+    <div class="preview">
+      Contratos, compliance, processos e auditorias legais.
+    </div>
+  </div>
+  <div class="submenu">
+    <a href="#">Contratos</a>
+    <a href="#">Processos</a>
+    <a href="#">Auditorias</a>
+  </div>
+
+  <div class="collapse-btn" id="collapseBtn">
+    <i class="bi bi-arrow-left-circle"></i>
+  </div>
+</div>
+
+<div class="content">
+  <h1>Área Principal</h1>
+  <p>Este é o protótipo do ERP. Clique nos menus à esquerda para expandir submenus e veja o preview passando o mouse.</p>
+</div>
+
+<script>
+  // Toggle submenu
+  const menuItems = document.querySelectorAll('.menu-item');
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.toggle('active');
+    });
+  });
+
+  // Collapse sidebar
+  const sidebar = document.getElementById('sidebar');
+  const collapseBtn = document.getElementById('collapseBtn');
+  collapseBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('collapsed');
+  });
+</script>
 </body>
 </html>
