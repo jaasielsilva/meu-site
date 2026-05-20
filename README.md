@@ -1,22 +1,35 @@
-# Portfólio - Jaasiel Miranda da Silva
+# Portfólio — Jaasiel Miranda da Silva
 
-Bem-vindo ao meu portfólio pessoal!
+Site pessoal com apresentação profissional, experiência, habilidades e projetos no GitHub.
 
-Este projeto foi criado com HTML, Tailwind CSS e hospedado com GitHub Pages. Aqui você encontra:
-- Meus projetos
-- Habilidades técnicas
-- Informações para contato
+## Conteúdo
 
-## 🚀 Acesse o site
+- Resumo profissional baseado no currículo
+- Trajetória (Grupo GPS, Spassu, Albert Einstein, Grupo Líder)
+- Stack técnica (Java, Spring Boot, DevOps)
+- Projetos com links para repositórios
+- Download do currículo em PDF
 
-👉 [Clique aqui para visitar](https://jaasielsilva.github.io/jaasielsilva/)
+## Acesso local
 
-## 📄 Currículo
+Abra o arquivo `index.html` no navegador ou use um servidor local:
 
-Você pode baixar meu currículo em PDF diretamente [clicando aqui](https://jaasielsilva.github.io/jaasielsilva/assets/curriculo.pdf).
+```bash
+npx serve .
+```
 
-## 📫 Contato
+## Currículo
 
-- Email: seuemail@email.com
-- LinkedIn: [linkedin.com/in/jaasielsilva](https://linkedin.com/in/jaasielsilva)
-- GitHub: [@jaasielsilva](https://github.com/jaasielsilva)
+[assets/curriculo.pdf](assets/curriculo.pdf)
+
+## Contato
+
+- **E-mail:** jasiel1@outlook.com
+- **LinkedIn:** [linkedin.com/in/JaasielSilva](https://www.linkedin.com/in/JaasielSilva)
+- **GitHub:** [@jaasielsilva](https://github.com/jaasielsilva)
+
+## Publicação (GitHub Pages)
+
+O workflow em `.github/workflows/pages.yml` publica o site na branch `gh-pages` ao fazer push na `main`.
+
+Configure em **Settings → Pages → Source: GitHub Actions**.
